@@ -1,0 +1,20 @@
+{
+  "name": "tffcheck",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fikret Burak Gazioglu | The Wall SK",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.5.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "fs": "0.0.1-security",
+    "node-horseman": "^3.3.0",
+    "phantomjs-prebuilt": "^2.1.15"
+  }
+}
