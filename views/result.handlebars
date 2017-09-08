@@ -1,38 +1,16 @@
-<html>
-
-<head>
-    <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 15px;
-        }
-    </style>
-</head>
-
-<body>
-    <table style="width:100%">
-        <tr>
-            <th>Ad</th>
-            <th>Soyad</th>
-            <th>Lisans Durumu(Prof.)</th>
-            <th>Lisans Durumu(Ama.)</th>
-        </tr>
-        {{#each result}}
-        <tr {{#ifCond this.A this.P}}bgcolor="ff00000" {{else}}bgcolor="00ff00" {{/ifCond}}>
-            <td>{{this.ad}}</td>
-            <td>{{this.soyad}}</td>
-            <td> {{varyok this.P}}</td>
-            <td> {{varyok this.A }}</td>
-        </tr>
-        {{/each}}
-    </table>
-</body>
-
-</html>
+<table style="width:100%">
+    <tr>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Profesyonel Faal Lisans</th>
+        <th>Amator Faal Lisans</th>
+    </tr>
+    {{#each result}}
+    <tr {{#ifCond this.A this.P}}bgcolor="ff00000" {{else}}bgcolor="00ff00" {{/ifCond}}>
+        <td>{{this.ad}}</td>
+        <td>{{this.soyad}}</td>
+        <td> {{varyok this.P}}</td>
+        <td> {{varyok this.A }}</td>
+    </tr>
+    {{/each}}
+</table>

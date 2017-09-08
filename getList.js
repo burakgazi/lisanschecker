@@ -4,17 +4,14 @@ module.exports = (phantomInstance, params, callback) => {
         // Optionally, determine the status of the response
         .status()
         .then(function Yuklendimi(statusCode) {
-            console.log('HTTP status code: ', statusCode);
             if (Number(statusCode) >= 400) {
-                throw 'Page failed with status: ' + statusCode;
+                throw new Error(`Page failed with status: ${statusCode}`);
             }
         })
-        // Take the screenshot
-        // Save the screenshot to a file
         .type('[name="ctl00$MPane$m_130_696_ctnr$m_130_696$txtAd"]', params.ad)
         .type('[name="ctl00$MPane$m_130_696_ctnr$m_130_696$txtSoyad"]', params.soyad)
-        .value('[name="ctl00$MPane$m_130_696_ctnr$m_130_696$cmbStatu_index"]', params.lisans) // Amatör ,Profesyönel
-        .value('[name="ctl00$MPane$m_130_696_ctnr$m_130_696$f_index"]', params.aktif)  // 1,2
+        .value('[name="ctl00$MPane$m_130_696_ctnr$m_130_696$cmbStatu_index"]', params.lisans || 'P')
+        .value('[name="ctl00$MPane$m_130_696_ctnr$m_130_696$f_index"]', params.aktif || 1)
         .click('[name="ctl00$MPane$m_130_696_ctnr$m_130_696$btnSearch3"]')
         .waitForNextPage()
         .then(function results() {
@@ -31,9 +28,8 @@ module.exports = (phantomInstance, params, callback) => {
                 });
         })
         .catch(function ErrorFunc(err) {
-            console.log('Error taking screenshot: ', err);
-            return;
+            phantomInstance.close();
+            return callback(err);;
         })
-    // Always close the Horseman instance, or you might end up with orphaned phantom processes
 
 };

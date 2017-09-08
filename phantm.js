@@ -23,12 +23,12 @@ module.exports = () => {
 
     const phantomInstance = new Horseman(options);
 
-    phantomInstance.on('consoleMessage', (msg) => {
-        // console.log('Phantom page log: ', msg);
-    });
+    // phantomInstance.on('consoleMessage', (msg) => {
+    //     throw new Error(`Phantom page log: ${msg}`);
+    // });
 
     phantomInstance.on('error', (msg) => {
-        // console.log('Phantom page error: ', msg);
+        throw new Error(`Phantom page log: ${msg}`);
     });
 
     return phantomInstance;

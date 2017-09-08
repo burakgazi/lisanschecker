@@ -19,7 +19,8 @@ var hbs = exphbs.create({
             }
             return 'YOK';
         },
-    }
+    },
+    defaultLayout: 'main'
 });
 
 
@@ -29,13 +30,18 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 
-
+// Main route
 app.get('/', (req, res, next) => {
-    res.send('<html><head></head><body><form action="/checkList" method="post"><textarea name="txtListe" type="text"> </textarea><input type="submit" value="submit"></input></form></body></html>');
-    return next();
+    res.render('index');
+    return;
 });
-
+app.get('/help', (req, res, next) => {
+    res.render('help');
+    return;
+});
+// Result route
 app.post('/checkList', (req, res, next) => {
+    // CSV to json object
     const list = req.body.txtListe.split('\n');
     const listFormated = [];
     const headers = list[0].split(';');
@@ -48,13 +54,13 @@ app.post('/checkList', (req, res, next) => {
         listFormated.push(obj);
     }
     JSON.stringify(listFormated);
-
+    // Get the results
     return checkList(listFormated, (err, result) => {
-        res.render('result', { result, layout: false });
+        res.render('result', { result });
         return;
     });
 });
 
-app.listen(80, () => {
-    console.log('Example app listening on port 3000!');
+app.listen(3000, () => {
+    console.log('Example app listening on port 80!');
 });
