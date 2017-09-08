@@ -61,6 +61,6 @@ app.post('/checkList', (req, res, next) => {
     });
 });
 
-app.listen(3000, () => {
+app.listen(80, () => {
     console.log('Example app listening on port 80!');
 });
